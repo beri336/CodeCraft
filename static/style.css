@@ -1,0 +1,195 @@
+/* -- static/style.css -- */
+
+/* - Standard - */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+    font-size: 25px;
+    line-height: 1.3em;
+    background-color: #086485;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+    text-align: center;
+    line-height: 1em;
+    color: #211b0f;
+    margin: 15px 0;
+}
+
+h1:hover {
+    color: yellow;
+}
+
+h1 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+span {
+    color: deepskyblue;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.controls {
+    margin: 15px 0;
+}
+
+
+/* - Button - */
+button {
+    margin: 15px 0;
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: black;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: yellow;
+}
+
+.btn_next, .btn_back {
+    background-color: #007bff;
+}
+
+.btn_restart, .btn_goto_start {
+    background-color: #28a745;
+}
+
+.create_img {
+    background-color: chocolate;
+}
+
+
+/* - Dropdown-Menu - */
+.dropbox {
+    background-color: #15b7df;
+}
+
+select {
+    padding: 0.5em;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    appearance: none; /* Entfernt das Standard-Dropdown-Pfeilsymbol */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>'); /* Fügt ein benutzerdefiniertes Pfeilsymbol hinzu */
+    background-repeat: no-repeat;
+    background-position: right 0.7em top 50%;
+    padding-right: 1.5em;
+    cursor: pointer;
+    color: black;
+    background-color: white;
+}
+
+select:hover {
+    background-color: yellow;
+}
+
+select {
+    cursor: pointer;
+    margin: 0.25em;
+    min-width: 8em;
+}
+
+
+/* - Textarea for code input - */
+.text_code {
+    background-color: #2c3e50;
+    min-height: 400px;
+    min-width: 800px;
+    max-height: 90%;
+    max-width: 90%;
+    font-size: 25px;
+    border-radius: 10px;
+    border-color: yellow;
+    padding: 20px;
+    color: #ecf0f1;
+    margin: 15px 0;
+}
+
+
+/* - Icon - */
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100px;
+    margin: 15px 0;
+}
+
+.icon-style {
+    height: auto;
+    width: 100px;
+    border-radius: 10px;
+}
+
+
+/* - Code -> Image - */
+.code {
+    font-family: monospace;
+    box-shadow: #767676 0px 20px 30px -10px;
+    border-radius: 0.5em;
+    padding: 1em 2em;
+    min-width: 32em;
+    max-width: 90%;
+    min-height: 12em;
+    max-height: 90%;
+    text-align: left;
+    border: 1px solid #cecece;
+    margin: 1em;
+    line-height: 1.4em;
+    margin: 25px 0;
+}
+
+
+/* - Download - */
+.download_img {
+    margin: 15px 0;
+    padding: 10px 10px;
+    color: white;
+    border-radius: 0.5em;
+    text-decoration: none;
+}
+
+.download_img:hover {
+    background-color: blue;
+}
+
+
+/* - Generated Code Picture - */
+.code-picture {
+    text-align: center;
+}
+
+.code-picture img {
+    margin: 1em 0;
+    border: 1px solid #cecece;
+    max-width: 80%;
+    padding: 1em;
+}

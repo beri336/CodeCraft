@@ -1,0 +1,34 @@
+<!-- templates/code_input.html -->
+
+{% extends "base.html" %}
+
+{% block title %}
+- Code Input
+{% endblock title %}
+
+{% block content %}
+<style>
+    .code {
+        min-height: calc({{ num_lines }} * 1.5em + 2 * 1em);
+        min-width: calc({{ max_chars }}ch + 4 * 2em);
+    }
+</style>
+<form method="post" action="{{ url_for('save_style') }}">
+    <textarea class="text_code" name="code" placeholder="Paste your code here">{{ code }}</textarea>
+    <div class="controls">
+        <button class="btn_restart" formmethod="post" formaction="{{ url_for('reset_session') }}">
+            Reset Session ♻️
+        </button>
+        <button class="btn_next" type="submit">
+            Next ➡️
+        </button>
+        <select class="dropbox" name="language">
+            {% for lexer in lexers %}
+            <option value="{{ lexer[1][0] }}" {% if lexer[1][0] == language %}selected{% endif %}>
+                {{ lexer[0] }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+</form>
+{% endblock content %}
