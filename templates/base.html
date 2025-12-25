@@ -10,6 +10,12 @@
     <title>
         Create Beautiful Snippets {% block title %}{% endblock title %}
     </title>
+    
+    <!-- Google Fonts für moderne Typografie -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <link
         rel="stylesheet"
         type="text/css"
@@ -20,7 +26,7 @@
 <body>
     <div class="header">
         <div class="icon-container">
-            <img src="{{ url_for('static', filename='icon/icon.png') }}" alt="Icon-Beschreibung" class="icon-style">
+            <img src="{{ url_for('static', filename='icon/icon.png') }}" alt="Code Snippets Icon" class="icon-style">
         </div>
 
         <h1>
