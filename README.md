@@ -444,7 +444,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Berkant Simsek**
 
-![Created by Berkant Simsek](pictures/created-by-berkant-simsek.svg)
+![Created-by](pictures/created-by.svg)
 
 [![GitHub](https://img.shields.io/badge/GitHub-beri336-black.svg?style=flat&logo=github)](https://github.com/beri336)
 [![Project](https://img.shields.io/badge/Project-CodeCraft-blue.svg?style=flat)](https://github.com/beri336/CodeCraft)
