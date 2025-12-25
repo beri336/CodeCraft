@@ -2,6 +2,7 @@
 
 from playwright.sync_api import sync_playwright
 
+
 def take_screenshot_from_url(url, session_data):
     """
     Capture a screenshot of a specific element on a webpage using Playwright.
