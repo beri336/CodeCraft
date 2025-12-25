@@ -1,3 +1,6 @@
 flask
 pygments
 playwright
+
+# After installation, run:
+# playwright install webkit
