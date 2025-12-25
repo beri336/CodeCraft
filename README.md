@@ -1,278 +1,493 @@
-# README - CodeCraft
+<div align="center">
 
-## Table of Contents
+# 🎨 CodeCraft
 
-01. [Motivation](#01-motivation)
-02. [Installation](#02-installation)
-03. [Usage](#3-usage)
-04. [Code](#4-code)
-05. [Troubleshooting](#5-troubleshooting)
-06. [Contributing](#6-contributing)
-07. [Licence](#7-licence)
-08. [Version](#8-version)
+**Transform your code into beautiful, shareable images with syntax highlighting**
 
-<hr><br>
+![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
+![Python](https://img.shields.io/badge/python-3.8+-green.svg)
+![License](https://img.shields.io/badge/license-MIT-orange.svg)
+![Flask](https://img.shields.io/badge/Flask-3.0+-red.svg)
+![Playwright](https://img.shields.io/badge/Playwright-1.40+-45ba4b.svg)
+![Platform](https://img.shields.io/badge/platform-MacOS%20%7C%20Linux%20%7C%20Windows-lightgrey.svg)
 
-## 01. Motivation
+[Features](#-features) • [Quick Start](#-quick-start) • [Installation](#-installation) • [Usage](#-usage-guide) • [Troubleshooting](#-troubleshooting)
 
-CodeCraft is designed to simplify sharing and visualizing code snippets. With its user-friendly interface, you can create and download beautiful syntax-highlighted code screenshots for multiple programming languages.
+![CodeCraft Demo](pictures/GUI.png)
 
-<hr><br>
+</div>
 
-## 02. Installation
+---
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/beri336/CodeCraft
-   ```
+## ✨ Features
 
-2. **Activate the virtual environment**:  
-   - macOS/Linux:
-     ```bash
-     python3 -m venv venv
-     source venv/bin/activate
-     ```
-   - Windows:
-     ```bash
-     python3 -m venv venv
-     venv\Scripts\activate
-     ```
+- 🎨 **Modern UI/UX** - Glassmorphism design with smooth animations and rounded corners
+- 🌈 **Syntax Highlighting** - Support for 500+ programming languages via Pygments
+- 🎭 **Multiple Themes** - Choose from dozens of professionally designed color schemes
+- 📸 **High-Quality Screenshots** - Export code as crisp PNG images with 2x resolution
+- ⚡ **Fast & Lightweight** - Built with Flask and Playwright for optimal performance
+- 🔒 **Secure** - Session-based authentication with encrypted cookies
+- 📱 **Responsive Design** - Works seamlessly on desktop, tablet, and mobile devices
+- 🌙 **Dark Mode Optimized** - Easy on the eyes with modern dark theme
 
-3. **Install dependencies**:  
-   ```bash
-   pip install -r requirements.txt
-   ```
-   - Install Playwright browsers:
-     ```bash
-     playwright install
-     ```
+---
 
-4. **Generate the `config.json`**:  
-   Run the following to create a secure `SECRET_KEY`:
-   ```bash
-   python create_secret_key.py
-   ```
+## 🚀 Quick Start
 
-5. `Now you're ready to go!`
+```bash
+# Clone the repository
+git clone https://github.com/beri336/CodeCraft.git
+cd CodeCraft
 
-<hr><br>
+# Run setup (recommended)
+make setup
 
-## 3. Usage
+# Or manual installation
+python3 -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+pip3 install -r requirements.txt
+playwright install webkit
+python3 scripts/create_secret_key.py
 
-1. **Run the application**:  
-   ```bash
-   python app.py
-   ```
+# Start the server
+python3 app.py
+```
 
-2. **Access the app**:  
-    - your terminal displays the port:
-    ```bash
-    * Running on http://127.0.0.1:8080
-    ```
+<div align="center">
 
-    - Open `http://localhost` or `http://127.0.0.1:8080` (when using standard without changing port, or paste your own port) in your browser. The interface should look like this:
+🎉 **Open `http://localhost:8080` in your browser and start creating!**
 
-    ![GUI](Pictures/GUI.png)
+</div>
 
-- Based on the browser you use, the website can be displayed different.
+---
 
+## 💾 Installation
 
-3. **How to use it?**
+### Prerequisites
 
-- `Reset Session`: deletes the input inside the TextField and sets it back to the print seen in the picture above
-- `Next`: navigates to the next page, to create the image based of the given Code
-- `Dropdown-List`: to correctly show the Syntax-Highlighting, choose the programming language for the code (note: the Syntax-Highlight is seen on the next page)
-- `Create Beautiful Snippets`: if clicked, it brings back to the homepage (this page)
+- Python 3.8 or higher
+- Modern web browser (Chrome 76+, Firefox 70+, Safari 14+)
 
-<hr>
+### Method 1: Using Make (Recommended)
 
-![Example Code](<Pictures/Example Code.png>)
+```bash
+git clone https://github.com/beri336/CodeCraft.git
+cd CodeCraft
+make setup
+```
 
-- Here you can see the correct Syntax-Highlight, mentioned earlier
-- `Back`: goes back to the homepage
-- `Create an Image`: creates the image and goes to next page
-- `DropDown-List`: choose your theme (monokai is standard)
+### Method 2: Manual Installation
 
-<hr>
+**Step 1:** Clone and navigate
 
-![Example Snippet](<Pictures/Example Snippet.png>)
+```bash
+git clone https://github.com/beri336/CodeCraft.git
+cd CodeCraft
+```
 
-- Your image was successfully created
-- `Download Your Code Image Here`: you can download your image with this button
-- `Back to Start`: goes to homepage
+**Step 2:** Create virtual environment
 
-<hr>
+```bash
+# macOS/Linux
+python3 -m venv .venv
+source .venv/bin/activate
 
-- This is how your image could look like:
-![Code Image](Pictures/Your_Code_As_Image.png)
+# Windows
+python -m venv .venv
+.venv\Scripts\activate
+```
 
-<hr><br>
+**Step 3:** Install dependencies
 
-## 4. Code
+```bash
+pip3 install -r requirements.txt
+```
 
-### File `app.py`
+**Step 4:** Install Playwright browsers
 
-#### `load_secret_key()`
-- Loads the secret key from `config.json`.
+```bash
+playwright install webkit
+```
 
-#### `code()`
-- Displays the code input form and initializes session variables if unset.
+**Step 5:** Generate secret key
 
-#### `save_code()`
-- Saves the entered code and selected language to the session.
+```bash
+python3 scripts/create_secret_key.py
+```
 
-#### `reset_session()`
-- Resets the session and restores default values.
+**Step 6:** Run the application
 
-#### `style()`
-- Displays the style selection page with a code preview.
+```bash
+python3 app.py
+```
 
-#### `save_style()`
-- Saves the selected style, code, and language to the session.
+### Method 3: Using pip (Development)
 
-#### `image()`
-- Captures a screenshot of the style page and returns it as a base64-encoded image.
+```bash
+pip3 install -e .
+playwright install webkit
+python3 scripts/create_secret_key.py
+```
 
-<hr>
+---
 
-### File `utils.py`
+## 📖 Usage Guide
 
-#### `take_screenshot_from_url(...)`
-- Captures a screenshot of an element (`.code`) from a URL using Playwright, preserving session context.
+### Starting the Application
 
-<hr>
+```bash
+python3 app.py
+```
 
-### Folder `templates/`
+<div align="center">
+
+**The server will start at `http://127.0.0.1:8080`**
+
+</div>
+
+### Creating Your First Snippet
+
+#### 1. **Code Input Page**
+
+<div align="center">
+
+![Code Input](pictures/GUI.png)
+
+</div>
+
+- Paste your code into the text area
+- Select your programming language from the dropdown
+- Click **Next ➡️** to proceed
+
+**Controls:**
+- `Reset Session ♻️` - Clear input and reset to default
+- `Next ➡️` - Move to style selection
+- `Dropdown` - Choose programming language (Python, JavaScript, C++, etc.)
+
+#### 2. **Style Selection Page**
+
+<div align="center">
+
+![Style Selection](<pictures/Example Code.png>)
+
+</div>
+
+- Preview your code with syntax highlighting in real-time
+- Choose a color theme from the dropdown (monokai, dracula, github, etc.)
+- Click **Create an Image 📸** when satisfied
+
+**Controls:**
+- `⬅️ Back` - Return to code input
+- `Create an Image 📸` - Generate high-resolution screenshot
+- `Dropdown` - Select color theme
+
+#### 3. **Download Page**
+
+<div align="center">
+
+![Download](<pictures/Example Snippet.png>)
+
+</div>
+
+- View your beautifully generated image
+- Click **Download Your Code Image Here ⤵️** to save
+- Click **🔄 Back to Start** to create another snippet
+
+**Example Output:**
+
+<div align="center">
+
+![Code Image](pictures/Your_Code_As_Image.png)
+
+*Professional code snippet ready for sharing on social media, documentation, or presentations*
+
+</div>
+
+---
+
+## 🏗️ Architecture
+
+### Project Structure
+
+```bash
+CodeCraft/
+├── README.md                                    # Project documentation
+├── app.py                                       # Main Flask application
+├── utils.py                                     # Screenshot utility functions
+├── config.json                                  # Configuration (auto-generated)
+├── requirements.txt                             # Python dependencies
+├── pyproject.toml                               # Project configuration
+├── pictures/                                    # Documentation assets
+│   ├── Example Code.png                         # Style selection screenshot
+│   ├── Example Snippet.png                      # Download page screenshot
+│   ├── GUI.png                                  # Code input page screenshot
+│   ├── Your_Code_As_Image.png                   # Example output image
+│   └── created-by.svg                           # Author badge
+├── scripts/                                     # Utility scripts
+│   ├── create_secret_key.py                     # Secret key generator
+│   └── setup.sh                                 # Automated setup script
+├── static/                                      # Static assets
+│   ├── style.css                                # Modern UI with CSS variables
+│   └── icon/
+│       └── icon.png                             # Application icon
+└── templates/                                   # Jinja2 templates
+    ├── base.html                                # Base template with header
+    ├── code_input.html                          # Code entry page
+    ├── style_selection.html                     # Theme picker with preview
+    └── image.html                               # Download page
+```
+
+### Core Components
+
+#### `app.py` - Flask Application
+
+**Routes:**
+
+| Route | Method | Description |
+|-------|--------|-------------|
+| `/` | GET | Code input page with language selector |
+| `/save_code` | POST | Save code and language to session |
+| `/reset_session` | POST | Clear session and restore defaults |
+| `/style` | GET | Style selection page with preview |
+| `/save_style` | POST | Save theme and code preferences |
+| `/image` | GET | Generate and display screenshot |
+
+**Key Functions:**
+
+- `load_secret_key()` - Loads secret key from config.json for secure sessions
+- `code()` - Renders code input page with session initialization
+- `save_code()` - Persists code and language selection to session
+- `reset_session()` - Clears session data and restores default values
+- `style()` - Displays style preview with live syntax highlighting
+- `save_style()` - Saves theme, code, and language preferences
+- `image()` - Captures high-quality screenshot using Playwright
+
+#### `utils.py` - Screenshot Generator
+
+**Function:** `take_screenshot_from_url(url, session_data)`
+
+Uses Playwright's WebKit engine to:
+1. Launch headless browser with 2x device scale factor (Retina quality)
+2. Inject session cookies for authentication
+3. Navigate to target URL
+4. Capture screenshot of `.code` element with proper styling
+5. Return high-quality PNG as bytes
+
+**Parameters:**
+- `url` (str) - Target webpage URL
+- `session_data` (dict) - Cookie information for session persistence
+
+**Returns:** `bytes` - High-resolution PNG image data
+
+#### `create_secret_key.py` - Security Setup
+
+Generates cryptographically secure random key using `secrets.token_hex()` and saves to `config.json`:
+
+```json
+{
+    "SECRET_KEY": "a1b2c3d4e5f6..."
+}
+```
+
+Used by Flask for secure session management and cookie signing to prevent tampering.
+
+### Templates
 
 #### `base.html`
-- Defines the app's basic HTML structure with placeholders for dynamic content.
+Base layout with modern header, navigation, and content blocks. Includes Google Fonts (Inter) for modern typography.
 
 #### `code_input.html`
-- Code input page with form fields for code and language selection.
-
-#### `image.html`
-- Displays the generated code screenshot with a download option.
+Form with responsive textarea for code input and language selector. Dynamic sizing based on content length.
 
 #### `style_selection.html`
-- Style selection page with a preview of highlighted code.
+Interactive theme picker with live preview. Auto-submits on selection change via JavaScript for seamless UX.
 
-<hr>
+#### `image.html`
+Displays base64-encoded PNG with one-click download link. Includes back-to-start navigation.
 
-### Folder `static/`
+### Styling
 
-#### `style.css`
-- Defines the application's CSS for layout, buttons, dropdowns, and responsive design.
+**`style.css`** - Modern Design System
 
-<hr>
+Features:
+- CSS Custom Properties (variables) for consistent theming
+- Glassmorphism effects with backdrop-filter blur
+- Smooth cubic-bezier transitions (0.3s)
+- Responsive design with mobile-first approach
+- Custom scrollbar styling for all browsers
+- Interactive hover animations with scale and glow effects
+- Gradient backgrounds for depth
+- Dark mode optimized color palette
+- Rounded corners (8px-24px) throughout
+- Box shadows with multiple elevation levels
 
-### File `create_secret_key.py`
+---
 
-#### Functionality:
-- Generates a new secret key and saves it to `config.json` if it doesn’t exist.
+## 🔧 Troubleshooting
 
-#### Why?
-- Ensures secure session management by protecting sensitive data from tampering.
+### Port Already in Use
 
-<hr><br>
-
-## 5. Troubleshooting
-
-### Common Issues:
-
-> **Port-Error**
+```bash
+OSError: [Errno 48] Address already in use
 ```
-Address already in use
-Port 5000 is in use by another program.
-```
-- Go to the `app.py` and change the `port` to another, for example `8080` or `8000`.
 
-<hr>
+**Solution:** Change port in `app.py`:
 
-> **Secret Key Missing**
+```py
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0', port=8000)  # Changed from 8080
 ```
+
+---
+
+### Secret Key Missing
+
+```bash
 ValueError: A secret key is required to use the session.
 ```
-- Make sure `config.json` exists and contains a valid `"SECRET_KEY"`. 
-- If missing, run `create_secret_key.py` to generate one.
 
-<hr>
+**Solution:** Generate secret key:
 
-> **ModuleNotFoundError `flask`**
-```
-ModuleNotFoundError: No module named 'flask'
-```
-- Ensure all dependencies are installed by running:
-```
-pip install -r requirements.txt
+```bash
+python3 scripts/create_secret_key.py
 ```
 
-<hr>
+Verify `config.json` exists with valid `SECRET_KEY`.
 
-> **Playwright Error**
+---
+
+### Playwright Browser Missing
+
+```bash
+playwright._impl._errors.Error: Executable doesn't exist at ...
 ```
+
+**Solution:** Install Playwright browsers:
+
+```bash
+playwright install webkit
+
+# Or with system dependencies (Linux)
+playwright install --with-deps webkit
+```
+
+---
+
+### Browser Closed Unexpectedly
+
+```bash
 playwright._impl._api_types.Error: Browser closed unexpectedly
 ```
-- Make sure Playwright is installed and its browsers are set up:
-```
-pip install playwright
-playwright install
-```
 
-<hr>
+**Possible causes:**
+1. Insufficient system resources (RAM/CPU)
+2. Missing system dependencies
+3. Incompatible Playwright version
 
-> **FileNotFoundError**
-```
-FileNotFoundError: [Errno 2] No such file or directory: 'static/style.css'
-```
-- Ensure all static files and templates are correctly placed in their respective directories (`static/` and `templates/`).
+**Solution:**
 
-<hr>
-
-> **Session Cookie Error**
-```
-RuntimeError: The session is unavailable because no secret key was set.
-```
-- Ensure the `app.secret_key` is correctly loaded from `config.json`.
-
-<hr>
-
-> **Browser Context Error in Playwright**
-```
-TypeError: 'NoneType' object is not callable
-```
-- Check if the session cookies or URL passed to `take_screenshot_from_url` are valid. Ensure the session data is properly set.
-
-<hr>
-
-> **UnicodeEncodeError (Windows users)**
-```
-UnicodeEncodeError: 'charmap' codec can't encode character
-```
-- Use UTF-8 encoding by setting the environment variable:
-```
-set PYTHONIOENCODING=utf-8
+```bash
+# Reinstall Playwright
+pip3 uninstall playwright
+pip3 install playwright
+playwright install --with-deps webkit
 ```
 
-<hr>
+---
 
-> **PermissionError (Windows users)**
+### Session Cookie Error
+
+```bash
+RuntimeError: The session is unavailable because no secret key was set
 ```
-PermissionError: [Errno 13] Permission denied
+
+**Solution:** Check `app.py` loads secret key correctly:
+
+```py
+def load_secret_key():
+    with open('config.json') as config_file:
+        config = json.load(config_file)
+    return config["SECRET_KEY"].encode()
 ```
-- Ensure you have write permissions for the directory where the application is running.
 
-<hr><br>
+Ensure `config.json` exists and contains a valid key.
 
-## 6. Contributing
-![Creator](Pictures/created-by-berkant-simsek.svg)
+---
 
-<hr><br>
+### Development Setup
 
-## 7. Licence
-This project is licensed under the MIT License.
+```bash
+# Install with dev dependencies
+make dev-install
 
-<hr><br>
+# Run tests
+make test
 
-## 8. Version
-> **Version 1.0**
-- Initial release with local hosting, code snippet creation, and image generation.
+# Format code
+make format
+
+# Clean cache
+make clean
+```
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+
+## 👨‍💻 Author
+
+**Berkant Simsek**
+
+![Created by Berkant Simsek](pictures/created-by-berkant-simsek.svg)
+
+[![GitHub](https://img.shields.io/badge/GitHub-beri336-black.svg?style=flat&logo=github)](https://github.com/beri336)
+[![Project](https://img.shields.io/badge/Project-CodeCraft-blue.svg?style=flat)](https://github.com/beri336/CodeCraft)
+
+</div>
+
+---
+
+## 📊 Version History
+
+### v2.0.0 (2025-12-25) 🎄
+- 🎨 Complete UI/UX redesign with glassmorphism
+- ✨ Modern design system with CSS variables
+- 🎭 Smooth animations and transitions
+- 📱 Improved responsive design
+- ♿ Enhanced accessibility
+- 🔄 Rounded corners throughout
+- 💫 Glow effects and hover animations
+- 🌈 Gradient backgrounds
+
+### v1.0.0 (Initial Release)
+- 🚀 Initial release
+- 📸 Code screenshot generation
+- 🌈 Multiple syntax highlighting themes
+- 💾 Session-based state management
+- 🔒 Secure cookie handling
+
+---
+
+## Acknowledgments
+
+- [Flask](https://flask.palletsprojects.com/) - Lightweight WSGI web framework
+- [Pygments](https://pygments.org/) - Syntax highlighting engine
+- [Playwright](https://playwright.dev/) - Browser automation library
+- [Inter Font](https://rsms.me/inter/) - Beautiful modern typeface
+- [Shields.io](https://shields.io/) - Badge generation service
+
+---
+
+<div align="center">
+
+**[⬆ Back to top](#-codecraft)**
+
+Made with ❤️ by [Me](https://github.com/beri336)
+
+</div>
