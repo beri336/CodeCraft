@@ -1,0 +1,68 @@
+[project]
+name = "code-snippet-beautifier"
+version = "2.0.0"
+description = "Create beautiful code snippet images with syntax highlighting"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+keywords = ["code", "snippets", "syntax-highlighting", "flask", "screenshot"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Framework :: Flask",
+]
+
+dependencies = [
+    "flask>=3.0.0",
+    "pygments>=2.17.0",
+    "playwright>=1.40.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/code-snippet-beautifier"
+Repository = "https://github.com/yourusername/code-snippet-beautifier"
+Issues = "https://github.com/yourusername/code-snippet-beautifier/issues"
+
+[project.scripts]
+beautifier = "app:main"
+
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["app"]
+
+[tool.black]
+line-length = 88
+target-version = ["py38", "py39", "py310", "py311"]
+include = '\.pyi?$'
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+select = ["E", "F", "I", "N", "W"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "--cov=. --cov-report=html --cov-report=term"
+
+[tool.coverage.run]
+omit = ["tests/*", "venv/*", ".venv/*"]
