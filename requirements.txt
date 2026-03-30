@@ -1,6 +1,8 @@
-flask
-pygments
-playwright
+# requirements.txt
+
+Flask>=3.0.0
+Pygments>=2.17.0
+Playwright>=1.40.0
 
 # After installation, run:
 # playwright install webkit
