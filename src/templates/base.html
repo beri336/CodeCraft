@@ -1,0 +1,75 @@
+<!-- src/templates/base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Create beautiful code snippets with custom styling and themes" />
+    <meta name="theme-color" content="#3b82f6" />
+    
+    <title>Create Beautiful Snippets {% block title %}{% endblock title %}</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="{{ url_for('static', filename='style.css') }}"
+    />
+</head>
+
+<body>
+    <header class="header" role="banner">
+        <div class="icon-container" aria-label="CodeCraft icon">
+            <img 
+                src="{{ url_for('static', filename='icon/icon.png') }}"
+                alt="CodeCraft - Create Beautiful Snippets" 
+                class="icon-style"
+                width="100"
+                height="100"
+            >
+        </div>
+
+        <h1 class="header-title">
+            <a href="{{ url_for('code') }}" class="header-link">Create Beautiful Snippets</a>
+            <span class="header-accent">{{ message }}</span>
+        </h1>
+    </header>
+
+    <main role="main" class="main-content">
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <footer class="footer" role="contentinfo" aria-label="Footer">
+        <p class="footer-text">© 2026 CodeCraft • Build beautiful code snippets</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // add smooth scroll behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // preload images for better performance
+            const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            images.forEach(img => imageObserver.observe(img));
+        });
+    </script>
+</body>
+
+</html>

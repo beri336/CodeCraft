@@ -1,0 +1,91 @@
+<!-- src/templates/code_input.html -->
+
+{% extends "base.html" %}
+
+{% block title %}
+- Code Input
+{% endblock title %}
+
+{% block content %}
+<style>
+    .code {
+        min-height: calc({{ num_lines }} * 1.5em + 2 * 1em);
+        min-width: calc({{ max_chars }}ch + 4 * 2em);
+    }
+</style>
+
+<form method="post" action="{{ url_for('save_style') }}" class="code-form" role="form" aria-label="Code input form">
+    <div class="form-group">
+        <textarea 
+            id="code-input"
+            class="text_code" 
+            name="code" 
+            placeholder="Paste your code here"
+            aria-label="Code textarea input"
+            spellcheck="false"
+        >{{ code }}</textarea>
+    </div>
+
+    <div class="controls">
+        <div class="controls-group controls-left">
+            <label for="language-select" class="select-label">Language:</label>
+            <select 
+                id="language-select"
+                class="dropbox" 
+                name="language"
+                aria-label="Select programming language"
+            >
+                {% for lexer in lexers %}
+                <option 
+                    value="{{ lexer[1][0] }}" 
+                    {% if lexer[1][0] == language %}selected{% endif %}
+                >
+                    {{ lexer[0] }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="controls-group controls-right">
+            <button 
+                class="btn_restart" 
+                formmethod="post" 
+                formaction="{{ url_for('reset_session') }}"
+                type="button"
+                aria-label="Reset the entire session"
+            >
+                Reset Session
+            </button>
+            <button 
+                class="btn_next" 
+                type="submit"
+                aria-label="Continue to style selection"
+            >
+                Next
+            </button>
+        </div>
+    </div>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const codeInput = document.getElementById('code-input');
+        
+        // auto-expand textarea height
+        const autoExpandTextarea = () => {
+            codeInput.style.height = 'auto';
+            codeInput.style.height = Math.min(codeInput.scrollHeight, 600) + 'px';
+        };
+        
+        codeInput.addEventListener('input', autoExpandTextarea);
+        autoExpandTextarea();
+        
+        // form submission feedback
+        document.querySelector('.code-form').addEventListener('submit', (e) => {
+            const btn = e.target.querySelector('.btn_next');
+            btn.disabled = true;
+            btn.innerHTML = 'Processing...';
+        });
+    });
+</script>
+{% endblock content %}

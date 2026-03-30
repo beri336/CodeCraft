@@ -1,0 +1,169 @@
+<!-- src/templates/style_selection.html -->
+
+{% extends "base.html" %}
+
+{% block title %}
+- Style Selection
+{% endblock title %}
+
+{% block content %}
+<style>
+    {{ style_definitions }}
+
+    .code {
+        background-color: {{ style_bg_color }};
+        position: relative;
+    }
+
+    .style-preview {
+        animation: fadeInScale 0.4s ease-out;
+    }
+
+    @keyframes fadeInScale {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+</style>
+
+<form method="post" action="{{ url_for('save_style') }}" class="style-form" role="form" aria-label="Style selection form">
+    <div class="controls">
+        <div class="style-selector-wrapper">
+            <label for="style-select" class="select-label">Choose a Theme:</label>
+            <select 
+                id="style-select"
+                class="dropbox" 
+                name="style"
+                aria-label="Select code highlighting theme"
+                aria-describedby="style-help"
+            >
+                {% for style_name in all_styles %}
+                <option
+                    value="{{ style_name }}"
+                    {% if style_name == style %}selected{% endif %}
+                >
+                    {{ style_name }}
+                </option>
+                {% endfor %}
+            </select>
+            <p id="style-help" class="sr-only">Select a theme to preview your code with different syntax highlighting styles</p>
+        </div>
+    </div>
+
+    <div class="style-preview">
+        <div class="code" role="region" aria-label="Code preview with selected style">
+            {{ highlighted_code | safe }}
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="controls-group controls-left">
+            <button 
+                class="btn_back" 
+                formmethod="get" 
+                formaction="{{ url_for('code') }}"
+                type="button"
+                aria-label="Go back to code input"
+            >
+                Back
+            </button>
+        </div>
+
+        <div class="controls-group controls-right">
+            <button 
+                class="create_img" 
+                formmethod="get" 
+                formaction="{{ url_for('image') }}"
+                type="submit"
+                aria-label="Generate image from current code snippet"
+            >
+                Create Image
+            </button>
+        </div>
+    </div>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const styleSelect = document.getElementById('style-select');
+        const codePreview = document.querySelector('.code');
+
+        styleSelect.addEventListener('change', () => {
+            // Add smooth transition effect
+            codePreview.style.opacity = '0.7';
+            
+            setTimeout(() => {
+                document.querySelector('.style-form').submit();
+            }, 150);
+        });
+
+        // prevent form submission on Enter key when select is focused
+        styleSelect.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                styleSelect.blur();
+            }
+        });
+    });
+</script>
+
+<style>
+    .style-selector-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .select-label {
+        font-weight: 600;
+        color: var(--text-primary);
+        white-space: nowrap;
+    }
+
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+
+    .controls-group {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .controls-right {
+        flex-direction: row;
+    }
+
+    @media (max-width: 768px) {
+        .style-selector-wrapper {
+            flex-direction: column;
+        }
+
+        .select-label {
+            width: 100%;
+            text-align: center;
+        }
+
+        #style-select {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock content %}

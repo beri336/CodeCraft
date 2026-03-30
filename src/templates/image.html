@@ -1,0 +1,93 @@
+<!-- templates/image.html -->
+
+{% extends "base.html" %}
+
+{% block title %}
+- Your Image
+{% endblock title %}
+
+{% block content %}
+<form class="image-form" role="form" aria-label="Image download form">
+    {% if image_b64 %}
+        <div class="code-picture" role="img" aria-label="Generated code snippet image">
+            <img
+                src="data:image/png;base64,{{ image_b64 | safe }}"
+                alt="Generated code snippet as image"
+                class="code-image"
+                loading="lazy"
+            />
+        </div>
+
+        <div class="download-section">
+            <p class="download-info">Your beautiful code snippet is ready to download!</p>
+            <a
+                class="download_img"
+                href="data:image/png;base64,{{ image_b64 | safe }}"
+                download="CodeCraft_Snippet.png"
+                role="button"
+                aria-label="Download your code image"
+            >
+                Download Image
+            </a>
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <p class="empty-state-text">No image available. Please go back and create your snippet.</p>
+        </div>
+    {% endif %}
+
+    <div class="controls">
+        <button 
+            class="btn_goto_start" 
+            formmethod="get" 
+            formaction="{{ url_for('code') }}"
+            type="button"
+            aria-label="Return to code input page"
+        >
+            Back to Start
+        </button>
+    </div>
+</form>
+
+<style>
+    .empty-state {
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .empty-state-text {
+        font-size: 18px;
+        color: var(--text-secondary);
+        margin-bottom: 20px;
+    }
+
+    .download-section {
+        margin: 30px 0;
+        text-align: center;
+        padding: 20px;
+        background: rgba(30, 41, 59, 0.4);
+        backdrop-filter: blur(8px);
+        border-radius: var(--radius-lg);
+        border: 1px solid rgba(100, 116, 139, 0.2);
+    }
+
+    .download-info {
+        margin-bottom: 15px;
+        color: var(--text-secondary);
+        font-size: 16px;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // add copy-to-clipboard functionality
+        const downloadBtn = document.querySelector('.download_img');
+        
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', () => {
+                console.log('Image download initiated');
+            });
+        }
+    });
+</script>
+{% endblock content %}
